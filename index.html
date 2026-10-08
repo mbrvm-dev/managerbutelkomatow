@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Manager Butelkomatów</title>
+<meta name="description" content="Zewnętrzna koordynacja serwisu butelkomatów dla sieci handlowych. Twój człowiek od butelkomatów – profesjonalny nadzór nad flotą bez względu na jej wielkość.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Układ: zwarta jasna strona w kolorach logo – hero z hasłem, problem, zakres usługi, wyróżniony argument niezależnego nadzoru, zielony pas korzyści, doświadczenie, kontakt. Jeden, jasny motyw marki. */
+:root{
+  --green-dark:#16613A; --green:#1E7F4A; --green-light:#3FB06A;
+  --orange:#C25E17; --orange-light:#F28C28;
+  --beige:#F4EEE3; --mint:#CDEBD8; --mint-soft:#EEF7F1;
+  --ink:#1F2A23; --muted:#5E564A; --white:#FFFFFF;
+  --font:'Sora',"Segoe UI",system-ui,-apple-system,sans-serif;
+  --wrap:1120px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:clamp(16px,4vw,32px)}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.15;color:var(--green-dark)}
+p{margin:0}
+a{color:var(--green-dark)}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--orange-light);outline-offset:3px}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+
+/* nagłówek */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--mint)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{width:56px;height:auto;flex:none}
+.brand .m{display:block;font-size:.66rem;font-weight:700;letter-spacing:.28em;color:var(--orange)}
+.brand .b{display:block;font-size:1.3rem;font-weight:700;color:var(--green-dark);line-height:1.05}
+.nav{display:flex;align-items:center;gap:24px}
+.nav a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--ink)}
+.nav a:hover{color:var(--green)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none;transition:background .15s,transform .15s}
+.btn-primary{background:var(--green-dark);color:var(--white)!important}
+.btn-primary:hover{background:var(--green)}
+.btn-ghost{border:2px solid var(--mint);color:var(--green-dark)}
+.btn-ghost:hover{background:var(--mint-soft)}
+@media (max-width:760px){.nav .link{display:none}.brand svg{width:44px}.brand .b{font-size:1.1rem}}
+
+/* hero */
+.hero{padding-block:clamp(36px,6vw,64px) clamp(32px,5vw,56px)}
+.hero-copy{display:flex;flex-direction:column;gap:18px;min-width:0;max-width:780px}
+.pill{align-self:flex-start;background:var(--mint);color:var(--green-dark);font-weight:600;font-size:.85rem;padding:6px 14px;border-radius:999px}
+.hero h1{font-size:clamp(2.3rem,5.4vw,3.9rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 span{color:var(--orange)}
+.hero .sub{font-size:1.2rem;font-weight:500}
+.hero .lead{color:var(--ink);font-size:1.05rem;max-width:62ch}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+
+
+/* sekcje */
+section.block{padding-block:clamp(40px,6vw,64px)}
+.block-head{display:flex;flex-direction:column;gap:10px;max-width:720px;margin-bottom:28px}
+.block-head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:700}
+.block-head p{color:var(--muted)}
+
+.problem{background:var(--beige)}
+.problem-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.problem-item{background:var(--white);border-radius:14px;padding:16px 20px;display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start}
+.problem-item svg{width:26px;height:26px;color:var(--orange)}
+.problem-item p{font-weight:500}
+@media (max-width:700px){.problem-grid{grid-template-columns:1fr}}
+
+.services{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.service{border-top:3px solid var(--green-dark);padding-top:20px;display:flex;flex-direction:column;gap:10px}
+.service .no{font-size:.8rem;font-weight:700;color:var(--orange);letter-spacing:.1em}
+.service h3{font-size:1.15rem}
+.service p{color:var(--muted);font-size:.95rem}
+@media (max-width:960px){.services{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:540px){.services{grid-template-columns:1fr}}
+.oversight{background:var(--mint-soft);border-block:1px solid var(--mint)}
+.oversight .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(20px,4vw,56px);align-items:center}
+.oversight h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;letter-spacing:-.01em}
+.oversight h2 span{color:var(--orange)}
+.oversight p{font-size:1.05rem;color:var(--ink);max-width:52ch}
+.oversight p b{color:var(--green-dark)}
+@media (max-width:860px){.oversight .wrap{grid-template-columns:1fr}}
+
+.benefits{background:linear-gradient(135deg,var(--green) 0%,var(--green-dark) 100%);color:var(--white)}
+.benefits .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,64px);align-items:center}
+.benefits h2{color:var(--white);font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:800}
+.benefits h2 em{font-style:normal;color:var(--orange-light)}
+.benefits ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.benefits li{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start;font-size:1.02rem}
+.benefits li svg{width:26px;height:26px;margin-top:1px}
+@media (max-width:860px){.benefits .wrap{grid-template-columns:1fr}}
+
+.exp .wrap > div{border-left:5px solid var(--orange);padding-left:clamp(18px,3vw,32px)}
+.exp h2{font-size:clamp(1.35rem,2.6vw,1.85rem);margin-bottom:10px}
+.exp p{color:var(--muted);max-width:60ch}
+
+.contact{background:var(--beige)}
+.contact .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,64px);align-items:center}
+.contact h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-bottom:14px}
+.contact .intro p{color:var(--muted);max-width:52ch}
+.card{background:var(--white);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.card .name{font-size:1.25rem;font-weight:700;color:var(--green-dark)}
+.card .role{font-size:.9rem;color:var(--muted);margin-top:-10px}
+.card dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px}
+.card dt{color:var(--muted);font-size:.9rem}
+.card dd{margin:0;font-weight:600;overflow-wrap:anywhere;user-select:all}
+.card dd a{text-decoration:none}
+.card dd a:hover{text-decoration:underline}
+.card .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+@media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
+
+.site-foot{background:var(--green-dark);color:var(--mint)}
+.site-foot .wrap{padding-block:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:.85rem}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo" viewBox="0 0 140 120">
+      <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3FB06A"/><stop offset="1" stop-color="#1E7F4A"/></linearGradient>
+      <clipPath id="lc"><rect width="140" height="120" rx="28"/></clipPath>
+      <rect width="140" height="120" rx="28" fill="url(#lg)"/>
+      <polygon points="126.2,11.2 186,71 186,190 115,190 54.9,107.8 126.2,107.8" fill="#0B3D22" opacity="0.34" clip-path="url(#lc)"/>
+      <g transform="translate(13.5 10) scale(1.15) translate(-14 -17)">
+        <rect x="21.5" y="17" width="13" height="8" rx="1.5" fill="#DFF1FF" stroke="#16613A" stroke-width="2.5"/>
+        <rect x="19.5" y="25" width="17" height="3.5" rx="1.75" fill="#16613A"/>
+        <path d="M23 28.5 L23 33 C15 37 14 44 14 50 L14 62 Q17 67 14 72 L14 96 Q14 101 18 102 Q22 104 24 101 Q28 104 32 101 Q34 104 38 102 Q42 101 42 96 L42 72 Q39 67 42 62 L42 50 C42 44 41 37 33 33 L33 28.5 Z" fill="#DFF1FF" stroke="#16613A" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M16 50 L40 50 M16 55 L40 55" stroke="#16613A" stroke-width="1.8" stroke-linecap="round"/>
+        <rect x="14" y="76" width="28" height="12" fill="#16613A"/>
+        <rect x="50" y="18" width="62" height="84" rx="5" fill="#FFFFFF" stroke="#16613A" stroke-width="3"/>
+        <rect x="57" y="28" width="21" height="42" rx="2.5" fill="#CDEBD8" stroke="#16613A" stroke-width="2.5"/>
+        <circle cx="93" cy="39" r="9.5" fill="#16613A"/>
+        <rect x="94" y="55" width="7" height="7" rx="1.8" fill="#16613A"/>
+      </g>
+      <circle cx="114" cy="94" r="16.5" fill="#16613A"/>
+      <circle cx="114" cy="94" r="13" fill="#F28C28" stroke="#FFFFFF" stroke-width="3"/>
+      <path d="M107.5 94 l4.5 4.5 l8.5 -9" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="check" viewBox="0 0 26 26">
+      <circle cx="13" cy="13" r="12" fill="#F28C28"/>
+      <path d="M8 13.2l3.4 3.4 6.6-7" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 28 28">
+      <circle cx="14" cy="14" r="12" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M14 8v7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="14" cy="20" r="1.6" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#start" aria-label="Manager Butelkomatów – strona główna">
+      <svg viewBox="0 0 140 120" aria-hidden="true"><use href="#logo"/></svg>
+      <span><span class="m">MANAGER</span><span class="b">Butelkomatów</span></span>
+    </a>
+    <nav class="nav" aria-label="Menu">
+      <a class="link" href="#zakres">Zakres usługi</a>
+      <a class="link" href="#korzysci">Korzyści</a>
+      <a class="btn btn-primary" href="#kontakt">Skontaktuj się</a>
+    </nav>
+  </div>
+</header>
+
+<main id="start">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="pill">Profesjonalny nadzór nad flotą – bez względu na jej wielkość</span>
+        <h1>Twój człowiek <span>od butelkomatów</span></h1>
+        <p class="sub">Bez konieczności zatrudniania dodatkowego pracownika.</p>
+        <p class="lead">Przejmujemy od sieci handlowych nadzór nad zgłoszeniami awarii butelkomatów, kontakt z serwisem i pilnowanie terminów napraw. Dzięki temu odciążamy kierowników sklepów, a centrala zyskuje lepszą kontrolę nad dostępnością automatów.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#kontakt">Skontaktuj się</a>
+          <a class="btn btn-ghost" href="#zakres">Co robimy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block problem" aria-labelledby="problem-h">
+    <div class="wrap">
+      <div class="block-head">
+        <div class="eyebrow">Problem</div>
+        <h2 id="problem-h">Kto pilnuje Twoich butelkomatów?</h2>
+        <p>Zakup i instalacja automatu to dopiero początek. Butelkomaty wymagają bieżącego nadzoru, a odpowiedzialność za nie często spada na kierowników sklepów, którzy mają już wiele innych obowiązków. W efekcie:</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-item"><svg aria-hidden="true"><use href="#warn"/></svg><p>Brakuje zbiorczego obrazu dostępności automatów.</p></div>
+        <div class="problem-item"><svg aria-hidden="true"><use href="#warn"/></svg><p>Zgłoszenia serwisowe wymagają dodatkowej koordynacji.</p></div>
+        <div class="problem-item"><svg aria-hidden="true"><use href="#warn"/></svg><p>Trudno kontrolować czas przestojów i terminowość napraw.</p></div>
+        <div class="problem-item"><svg aria-hidden="true"><use href="#warn"/></svg><p>Centrala nie zawsze wie, które urządzenia generują najwięcej problemów.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="zakres" aria-labelledby="zakres-h">
+    <div class="wrap">
+      <div class="block-head">
+        <div class="eyebrow">Rozwiązanie</div>
+        <h2 id="zakres-h">Co przejmujemy na siebie?</h2>
+      </div>
+      <div class="services">
+        <div class="service"><span class="no">01</span><h3>Koordynacja serwisu</h3><p>Zgłaszanie usterek, kontakt z serwisem i pilnowanie ich usunięcia.</p></div>
+        <div class="service"><span class="no">02</span><h3>Kontrola umowy serwisowej</h3><p>Nadzór nad terminami reakcji i realizacji zgłoszeń oraz eskalacja opóźnień.</p></div>
+        <div class="service"><span class="no">03</span><h3>Ewidencja dostępności</h3><p>Rejestrowanie przestojów urządzeń, ich przyczyn i czasu trwania na podstawie dostępnych informacji.</p></div>
+        <div class="service"><span class="no">04</span><h3>Raportowanie</h3><p>Zestawienia awarii, czasu niedostępności i powtarzających się problemów.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block oversight" aria-labelledby="nadzor-h">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Niezależny nadzór</div>
+        <h2 id="nadzor-h" style="margin-top:10px">Producent naprawia – <span>my pilnujemy realizacji zgłoszeń.</span></h2>
+      </div>
+      <p><b>Manager Butelkomatów reprezentuje interes sieci handlowej</b>, kontrolując przebieg obsługi zgłoszeń i dostępność floty. Nie zastępujemy serwisu producenta – nadzorujemy jego działania.</p>
+    </div>
+  </section>
+
+  <section class="block benefits" id="korzysci" aria-labelledby="korzysci-h">
+    <div class="wrap">
+      <h2 id="korzysci-h">Mniej obowiązków. Więcej kontroli. <em>Krótsze przestoje.</em></h2>
+      <ul>
+        <li><svg aria-hidden="true"><use href="#check"/></svg>Odciążenie kierowników sklepów i pracowników centrali.</li>
+        <li><svg aria-hidden="true"><use href="#check"/></svg>Jeden punkt kontaktowy do koordynacji spraw serwisowych.</li>
+        <li><svg aria-hidden="true"><use href="#check"/></svg>Lepsza kontrola nad dostępnością floty.</li>
+        <li><svg aria-hidden="true"><use href="#check"/></svg>Dane umożliwiające ocenę jakości obsługi serwisu.</li>
+        <li><svg aria-hidden="true"><use href="#check"/></svg>Brak konieczności tworzenia dodatkowego stanowiska pracy.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block exp" aria-labelledby="exp-h">
+    <div class="wrap">
+      <div>
+        <h2 id="exp-h">Doświadczenie zdobyte przy zarządzaniu flotą ponad 130 automatów recyklingowych</h2>
+        <p>Za marką Manager Butelkomatów stoi praktyczne doświadczenie zawodowe w koordynacji instalacji, bieżącego utrzymania i obsługi serwisowej rozproszonej floty urządzeń na terenie całej Polski.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block contact" id="kontakt" aria-labelledby="kontakt-h">
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow">Kontakt</div>
+        <h2 id="kontakt-h">Sprawdźmy, jak funkcjonuje flota butelkomatów w Twojej sieci.</h2>
+        <p>Zapraszamy do rozmowy o obecnym modelu nadzoru nad automatami oraz możliwościach usprawnienia ich obsługi.</p>
+      </div>
+      <div class="card">
+        <div class="name">Jarosław Kuroś</div>
+        <div class="role">Manager Butelkomatów</div>
+        <dl>
+          <dt>Telefon</dt><dd><a href="tel:+48691422388">691 422 388</a></dd>
+          <dt>E-mail</dt><dd><a href="mailto:j.kuros@managerbutelkomatow.pl">j.kuros@managerbutelkomatow.pl</a></dd>
+        </dl>
+        <div class="actions">
+          <a class="btn btn-primary" href="tel:+48691422388">Zadzwoń</a>
+          <a class="btn btn-ghost" href="mailto:j.kuros@managerbutelkomatow.pl">Napisz e-mail</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© 2026 Manager Butelkomatów · Jarosław Kuroś</span>
+    <span>managerbutelkomatow.pl</span>
+  </div>
+</footer>
+
+</body>
+</html>
